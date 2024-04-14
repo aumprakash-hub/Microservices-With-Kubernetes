@@ -8,17 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 IServiceCollection services = builder.Services;
 
 services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("InMem"));
+services.AddScoped<IPlatformRepo,PlatformRepo>();
 services.AddControllers();
 services.AddEndpointsApiExplorer();
+services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 services.AddSwaggerGen();
-// services.AddSwaggerGen(s =>
-// {
-//     s.SwaggerDoc("V1", new OpenApiInfo
-//     {
-//         Title = "PlatformService.Kubernets",
-//         Version = "1"
-//     });
-// });
 
 var app = builder.Build();
 
@@ -29,6 +23,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
+
 app.MapControllers();
+SeedDb.PrepPopulation(app);
 app.Run();
