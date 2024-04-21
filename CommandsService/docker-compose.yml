@@ -1,0 +1,6 @@
+﻿services:
+  commandsservice:
+    image: commandsservice
+    build:
+      context: .
+      dockerfile: Dockerfile
