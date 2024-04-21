@@ -10,7 +10,7 @@ public class PlatformsController : ControllerBase
         
     }
 
-    [HttpGet]
+    [HttpPost]
     public ActionResult TestInboud()
     {
         Console.WriteLine("-->Inbound call");

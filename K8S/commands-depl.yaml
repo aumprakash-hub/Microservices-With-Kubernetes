@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: commands-depl
+  labels:
+    app: commands-depl
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: commandservice
+  template:
+    metadata:
+      name: commandservice
+      labels:
+        app: commandservice
+    spec:
+      containers:
+        - name: commandservice
+          image: aumprakashdehury/commandservice:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              protocol: TCP
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: commands-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: commandservice
+  ports:
+    - port: 80
+      name: commandservice
+      protocol: TCP
+      targetPort: 80
+  

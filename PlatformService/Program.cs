@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using PlatformService.Data;
+using PlatformService.SyncDataServices.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ IServiceCollection services = builder.Services;
 
 services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("InMem"));
 services.AddScoped<IPlatformRepo,PlatformRepo>();
+services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
 services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -23,7 +25,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.MapControllers();
 SeedDb.PrepPopulation(app);
