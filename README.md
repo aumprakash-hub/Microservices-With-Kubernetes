@@ -42,3 +42,9 @@
 * Services doesn't need to know about each other, just the bus
 * Introduces its own range of complexities - not a magic bullet
 ![MessageBus](MessageBus.jpeg)
+
+# Muti-resources URIs (RestAPI)
+![Multiresource URIs](MutiResource.jpeg)
+
+# Platforms and commands microservice architechture
+![PCArchitechture](PCArchitechture.jpeg)

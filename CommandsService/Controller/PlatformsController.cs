@@ -1,20 +1,21 @@
+using AutoMapper;
+using CommandsService.Data;
+using CommandsService.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CommandsService.Controller;
 [Route("api/c/[controller]")]
 [ApiController]
-public class PlatformsController : ControllerBase
+public class PlatformsController(ICommandRepo commandRepo, IMapper mapper) : ControllerBase
 {
-    public PlatformsController()
-    {
-        
-    }
+    private readonly ICommandRepo _commandRepo = commandRepo;
+    private readonly IMapper _mapper = mapper;
 
-    [HttpPost]
-    public ActionResult TestInboud()
+    [HttpGet]
+    public ActionResult<IEnumerable<PlatformReadDto>> GetPlatforms()
     {
-        Console.WriteLine("-->Inbound call");
-        return Ok();
+        var platformItems = _commandRepo.GetAllPlatforms();
+        return Ok(_mapper.Map<IEnumerable<PlatformReadDto>>(platformItems));
     }
     
 }

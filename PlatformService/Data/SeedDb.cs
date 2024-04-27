@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using PlatformService.Models;
 
 namespace PlatformService.Data
@@ -5,17 +6,22 @@ namespace PlatformService.Data
 
     public static class SeedDb
     {
-        public static void PrepPopulation(IApplicationBuilder app)
+        public static void PrepPopulation(IApplicationBuilder app,IWebHostEnvironment hostEnvironment)
         {
             using (var scope = app.ApplicationServices.CreateScope())
             {
-                SeedData(scope.ServiceProvider.GetService<AppDbContext>());
+                SeedData(scope.ServiceProvider.GetService<AppDbContext>(),hostEnvironment);
             }
 
         }
 
-        private static void SeedData(AppDbContext context)
+        private static void SeedData(AppDbContext context, IWebHostEnvironment hostEnvironment)
         {
+            if (hostEnvironment.IsDevelopment())
+            {
+                //context.Database.Migrate();
+            }
+            
             if (!context.Platforms.Any())
             {
                 Console.WriteLine("--> Seeding data...");
