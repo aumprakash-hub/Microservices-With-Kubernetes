@@ -24,5 +24,6 @@ if (app.Environment.IsDevelopment())
 
 app.MapControllers();
 app.UseHttpsRedirection();
+SeedDb.PrepPopulation(app,app.Environment);
 app.Run();
 

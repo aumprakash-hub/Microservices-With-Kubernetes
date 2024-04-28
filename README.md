@@ -48,3 +48,14 @@
 
 # Platforms and commands microservice architechture
 ![PCArchitechture](PCArchitechture.jpeg)
+
+# RabbitMQ
+![RabbitMQIntroduction](RabbitMQIntroduction.jpeg)
+**Types of Exchange RabbitMQ use**
+* Direct Exchange
+![RabbitMQDirectExchange](RabbitMQDirectExchange.jpeg)
+* Fanout Exchange
+![RabbitMQFanoutExchange](RabbitMQFanoutMessageExchange.jpeg)
+* Topic Exchange
+![RabbitMQTopicExchange](RabbitMQTopicExchange.jpeg)
+* Header Exchange

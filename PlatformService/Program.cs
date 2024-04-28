@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
+using PlatformService.AsyncDataServices;
 using PlatformService.CustomMiddleware;
 using PlatformService.Data;
 using PlatformService.SyncDataServices.Http;
@@ -14,6 +15,7 @@ IServiceCollection services = builder.Services;
 services.AddDbContext<AppDbContext>((option) => option.UseSqlServer(builder.Configuration.GetConnectionString("DbConnectionString")));
 services.AddScoped<IPlatformRepo,PlatformRepo>();
 services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
+services.AddSingleton<IMessageBusClient, MessageBusClient>();
 services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
