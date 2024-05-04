@@ -30,6 +30,11 @@ public class CommandRepo(AppDbContext context) : ICommandRepo
         return _context.Platforms.Any(p => p.Id == platformId);
     }
 
+    public bool ExternalPlatformExist(int externalPlatformId)
+    {
+        return _context.Platforms.Any(p => p.ExternalId == externalPlatformId);
+    }
+
     #endregion
 
     #region Command Section

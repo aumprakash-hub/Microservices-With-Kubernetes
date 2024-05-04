@@ -1,8 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.OpenApi.Models;
 using PlatformService.AsyncDataServices;
-using PlatformService.CustomMiddleware;
 using PlatformService.Data;
 using PlatformService.SyncDataServices.Http;
 
